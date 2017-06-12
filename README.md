@@ -1,10 +1,15 @@
 # LRGCE
 
-Reference Packages used to analyze the bacterial leaf litter community.
+Reference Packages used to analyze the bacterial leaf litter community at Loma Ridge, Irvine, CA, USA
 
-Reference tree:
+# Reference Phylogeny:
 ![](https://github.com/alex-b-chase/LRGCE/blob/master/chase_suppfigure1.pdf)
 
+# Reference Genomes
+List of [Genomes](https://github.com/alex-b-chase/LRGCE/blob/master/protein_S3p.refpkg/seqs_sub.fix.csv) in reference packages can be found in any of the above (all the same):
+
+
+# PPLACER
 To use with pplacer:
 
 1. align filtered reads from metagenome to reference package:
