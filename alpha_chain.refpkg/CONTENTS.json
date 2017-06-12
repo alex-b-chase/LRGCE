@@ -1,0 +1,53 @@
+{
+    "files": {
+        "phylo_model": "phylo_modelDSYnlf.json", 
+        "taxonomy": "subtax_sub.csv", 
+        "tree": "treeBEgpJD.tre", 
+        "aln_fasta": "alpha_chain.clustalo.aln", 
+        "seq_info": "seqs_sub.fix.csv", 
+        "tree_stats": "RAxML_info.alpha_chain"
+    }, 
+    "rollback": {
+        "files": {
+            "phylo_model": "phylo_modelDSYnlf.json", 
+            "taxonomy": "subtax_sub.csv", 
+            "tree": "RAxML_bipartitionsBranchLabels.alpha_chain", 
+            "aln_fasta": "alpha_chain.clustalo.aln", 
+            "seq_info": "seqs_sub.fix.csv", 
+            "tree_stats": "RAxML_info.alpha_chain"
+        }, 
+        "rollback": null, 
+        "metadata": {
+            "create_date": "2016-12-12 15:35:29", 
+            "format_version": "1.1", 
+            "locus": "alpha_chain"
+        }, 
+        "md5": {
+            "phylo_model": "d154e76bcb43285b283d43708b5ca47d", 
+            "taxonomy": "cfdb54d4035551861838bb6dbfc472fc", 
+            "tree": "e1b95b02cfd8624c82cf9ebfad7ee74a", 
+            "aln_fasta": "8778dc4040944be35befac5e479c7ac5", 
+            "seq_info": "35623eba1c1a78ed5b26eb96941b9f57", 
+            "tree_stats": "fe42b662a3783d4eed6590d1553fa517"
+        }
+    }, 
+    "log": [
+        "Rerooted", 
+        "Stripped refpkg (removed 0 files)", 
+        "Loaded initial files into empty refpkg"
+    ], 
+    "metadata": {
+        "create_date": "2016-12-12 15:35:29", 
+        "format_version": "1.1", 
+        "locus": "alpha_chain"
+    }, 
+    "rollforward": null, 
+    "md5": {
+        "phylo_model": "d154e76bcb43285b283d43708b5ca47d", 
+        "taxonomy": "cfdb54d4035551861838bb6dbfc472fc", 
+        "tree": "85554ade2fcf3c92e399c128b5c16ca3", 
+        "aln_fasta": "8778dc4040944be35befac5e479c7ac5", 
+        "seq_info": "35623eba1c1a78ed5b26eb96941b9f57", 
+        "tree_stats": "fe42b662a3783d4eed6590d1553fa517"
+    }
+}
