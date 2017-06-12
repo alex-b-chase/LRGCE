@@ -13,7 +13,7 @@ $ clustalo-1.2.0 --profile1 $REFDIR/$REF".refpkg"/$REF".clustalo.aln" -i $protei
 
 2. test pplacer to make sure it will run all the way through. Pplacer is installed with macqiime - can just source it directly from there
 
-$ /macqiime/bin/pplacer --pretend -c $REFPACK/$protein"p.refpkg" $OUTDIR/$protein'.hmm.aligned.fa'
+$ /macqiime/bin/pplacer --pretend -c $REFDIR/$REF".refpkg" $OUTPUT.fa
 
 >Found reference sequences in given alignment file. Using those for reference alignment.
 
