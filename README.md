@@ -10,15 +10,19 @@ List of [Genomes](https://github.com/alex-b-chase/LRGCE/blob/master/protein_S3p.
 
 
 # PPLACER
-To use with pplacer:
+To use with [pplacer](http://matsen.fhcrc.org/pplacer/):
 
-1. align filtered reads from metagenome to reference package:
+1. align filtered reads from metagenome to reference package using [clustal omega](http://www.clustal.org/omega/):
 
 ```bash
+REF=<reference package used>
+protein=<filtered reads>
+OUTPUT=<designate output filename>
+
 clustalo-1.2.0 --profile1 $REFDIR/$REF".refpkg"/$REF".clustalo.aln" -i $protein -o $OUTPUT.fa
 ```
 
-2. test pplacer to make sure it will run all the way through. Pplacer is installed with macqiime - can just source it directly from there
+2. test pplacer to make sure it will run all the way through. Pplacer is installed with [macqiime](http://www.wernerlab.org/software/macqiime) - can just source it directly from there
 
 ```bash
 /macqiime/bin/pplacer --pretend -c $REFDIR/$REF".refpkg" $OUTPUT.fa
@@ -34,17 +38,17 @@ clustalo-1.2.0 --profile1 $REFDIR/$REF".refpkg"/$REF".clustalo.aln" -i $protein 
 3. if everything is OK, can run!
 
 ```bash
-pplacer -c $REFDIR/$REF".refpkg" $OUTPUT.fa -p --keep-at-most 20
+/macqiime/bin/pplacer -c $REFDIR/$REF".refpkg" $OUTPUT.fa -p --keep-at-most 20
 ```
 
-4. use guppy to get information from the results
+4. use [guppy](https://matsen.github.io/pplacer/generated_rst/guppy.html) to get information from the results
 
 ```bash
-guppy to_csv --point-mass --pp $OUTPUT.jplace > $OUTPUT.csv
+/macqiime/bin/guppy to_csv --point-mass --pp $OUTPUT.jplace > $OUTPUT.csv
 ```
 
 5. (optional) get visualization of all placed reads
 
 ```bash
-guppy fat --node-numbers --point-mass --pp $OUTPUT.jplace
+/macqiime/bin/guppy fat --node-numbers --point-mass --pp $OUTPUT.jplace
 ```
