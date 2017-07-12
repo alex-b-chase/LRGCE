@@ -27,14 +27,25 @@ List of [Genomes](https://github.com/alex-b-chase/LRGCE/blob/master/concat.align
 # Running the Analysis
 You will need to run each marker gene independently. If you have access to a HPC, you can parallize these easily.
 
-You will first need to filter your metagenomic libraries for each marker gene. You have needed to translated all your reads. There are plenty of options out there for doing this quickly, including [FragGeneScanPlus](https://github.com/hallamlab/FragGeneScanPlus) and [Prodigal](https://github.com/hyattpd/Prodigal) using the -m option.
+You will first need to filter your metagenomic libraries for each marker gene. You will have needed to translated all your reads to amino acid format. There are plenty of options out there for doing this quickly, including [FragGeneScanPlus](https://github.com/hallamlab/FragGeneScanPlus) and [Prodigal](https://github.com/hyattpd/Prodigal) using the -m option.
 
 We recommend using the [BLASTp](https://github.com/alex-b-chase/LRGCE/blob/master/blastDB) database for an initial filter. This will be the most time consuming step.
 
 ```bash
-blastp -query $INFILE -db $BLASTDB/totalmarkergene -outfmt 6 -max_target_seqs 2 -evalue .00001 -num_threads 8 > $OUTPUT
+REFDIR=/wherever/you/downloaded/the/refpackages
+protein=<reference protein package>
+INFILE=<MGreads.faa>
+
+blastp -query $INFILE -db $BLASTDB/totalmarkergene -outfmt 6 -max_target_seqs 2 -evalue .00001 -num_threads 4 > $protein.blast.txt
 ```
 
+Next, you can add a secondary filter using [HMMer](http://hmmer.org/) against the [hmmprofiles](https://github.com/alex-b-chase/LRGCE/blob/master/hmmprofiles)
+
+```bash
+hmmsearch --tblout $protein.hmm.txt -E 1e-10 --cpu 4 $HMMPROFILE/$protein.hmm $INFILE2
+```
+
+You can use the .txt output files from each to subset the reads accordingly. output=$FINFILE.faa
 
 # PPLACER
 To use with [pplacer](http://matsen.fhcrc.org/pplacer/):
@@ -42,18 +53,16 @@ To use with [pplacer](http://matsen.fhcrc.org/pplacer/):
 1. align filtered reads from metagenome to reference package using [clustal omega](http://www.clustal.org/omega/):
 
 ```bash
-REFDIR=/wherever/you/downloaded/the/refpackages
-REF=<reference package used>
-protein=<filteredMGreads.faa>
+FINFILE=<filteredMGreads.faa>
 OUTPUT=<designate output filename>
 
-clustalo-1.2.0 --profile1 $REFDIR/$REF".refpkg"/$REF".clustalo.aln" -i $protein -o $OUTPUT.fa
+clustalo-1.2.0 --profile1 $REFDIR/$protein".refpkg"/$protein".clustalo.aln" -i $FINFILE -o $OUTPUT.fa
 ```
 
 2. test pplacer to make sure it will run all the way through. Pplacer is installed with [macqiime](http://www.wernerlab.org/software/macqiime) - can just source it directly from there
 
 ```bash
-/macqiime/bin/pplacer --pretend -c $REFDIR/$REF".refpkg" $OUTPUT.fa
+/macqiime/bin/pplacer --pretend -c $REFDIR/$protein".refpkg" $OUTPUT.fa
 ```
 
 >Found reference sequences in given alignment file. Using those for reference alignment.
@@ -66,7 +75,7 @@ clustalo-1.2.0 --profile1 $REFDIR/$REF".refpkg"/$REF".clustalo.aln" -i $protein 
 3. if everything is OK, can run!
 
 ```bash
-/macqiime/bin/pplacer -c $REFDIR/$REF".refpkg" $OUTPUT.fa -p --keep-at-most 20
+/macqiime/bin/pplacer -c $REFDIR/$protein".refpkg" $OUTPUT.fa -p --keep-at-most 20
 ```
 
 4. use [guppy](https://matsen.github.io/pplacer/generated_rst/guppy.html) to get information from the results
