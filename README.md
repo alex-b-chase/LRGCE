@@ -3,7 +3,7 @@
 Reference Packages used to analyze the bacterial leaf litter community at Loma Ridge, Irvine, CA, USA
 
 # Reference Phylogeny: 
-[Tree](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.tre) File and Multiple-Sequence Alignment ([MSA](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.fa)) for Reference Tree
+[Tree](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.tre) File and Multiple-Sequence Alignment ([MSA](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.fa.zip)) for Reference Tree
 
 Visualization of Reference Phylogeny colored by Phyla:
 
