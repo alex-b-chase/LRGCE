@@ -2,7 +2,17 @@
 
 Reference Packages used to analyze the bacterial leaf litter community at Loma Ridge, Irvine, CA, USA
 
+As most common metagenomic pipelines are often biased towards host-associated ecosystems, we developed this curated reference database to quantify soil microbial communities. From almost 80,000 genomes available in the [PATRIC](https://www.patricbrc.org/) database, we created a curated database of representative genomes consisting of 3,019 genomes representing 1,464 genera spanning the entire bacterial domain. When possible, we prioritized genomes isolated from soil habitats. In addition, we included a robust taxonomic representation in the common soil bacterium, Streptomyces (N=54) and Curtobacterium (N=17).
+
+For more information, check out our paper in [XXX](journalwebsite.com). And 
+if you really like our approach and wish to use this reference database, please cite us:
+
+>Chase AB, Karaoz U, Brodie EL, Gomez-Lunar Z, Martiny AC, Martiny JBH. 2017. Microdiversity of an abundant terrestrial bacterium encompasses extensive variation in ecologically-relevant traits.
+
+
 # Reference Phylogeny: 
+Multilocus phylogenetic analysis using a concatenated alignment of 29 conserved [single-copy marker genes](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0077033) 
+
 [Tree](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.tre) File and Multiple-Sequence Alignment ([MSA](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.fa.zip)) for Reference Tree
 
 Visualization of Reference Phylogeny colored by Phyla:
@@ -14,13 +24,16 @@ List of [Genomes](https://github.com/alex-b-chase/LRGCE/blob/master/concat.align
 
 
 # PPLACER
+You will need to run each marker gene independently. If you have access to a HPC, you can parallize these easily.
+
 To use with [pplacer](http://matsen.fhcrc.org/pplacer/):
 
 1. align filtered reads from metagenome to reference package using [clustal omega](http://www.clustal.org/omega/):
 
 ```bash
+REFDIR=/wherever/you/downloaded/the/refpackages
 REF=<reference package used>
-protein=<filtered reads>
+protein=<filteredMGreads.faa>
 OUTPUT=<designate output filename>
 
 clustalo-1.2.0 --profile1 $REFDIR/$REF".refpkg"/$REF".clustalo.aln" -i $protein -o $OUTPUT.fa
