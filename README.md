@@ -13,19 +13,30 @@ if you really like our approach and wish to use this reference database, please 
 # Reference Phylogeny: 
 Multilocus phylogenetic analysis using a concatenated alignment of 29 conserved [single-copy marker genes](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0077033) 
 
-[Tree](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.tre) File and Multiple-Sequence Alignment ([MSA](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.fa.zip)) for Reference Tree
-
 Visualization of Reference Phylogeny colored by Phyla:
 
 <img src="reference_tree.jpg" width="600" align="middle"/>
+
+Raw Data:
+[Tree File](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.tre) and Multiple-Sequence Alignment ([MSA](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered.fa.zip)) for Reference Tree
 
 # Reference Genomes
 List of [Genomes](https://github.com/alex-b-chase/LRGCE/blob/master/concat.aligned.filtered_ids.txt) in reference database - can be found in any of the above reference protein packages (all the same):
 
 
-# PPLACER
+# Running the Analysis
 You will need to run each marker gene independently. If you have access to a HPC, you can parallize these easily.
 
+You will first need to filter your metagenomic libraries for each marker gene. You have needed to translated all your reads. There are plenty of options out there for doing this quickly, including [FragGeneScanPlus](https://github.com/hallamlab/FragGeneScanPlus) and [Prodigal](https://github.com/hyattpd/Prodigal) using the -m option.
+
+We recommend using the [BLASTp](https://github.com/alex-b-chase/LRGCE/blob/master/blastDB) database for an initial filter. This will be the most time consuming step.
+
+```bash
+blastp -query $INFILE -db $BLASTDB/totalmarkergene -outfmt 6 -max_target_seqs 2 -evalue .00001 -num_threads 8 > $OUTPUT
+```
+
+
+# PPLACER
 To use with [pplacer](http://matsen.fhcrc.org/pplacer/):
 
 1. align filtered reads from metagenome to reference package using [clustal omega](http://www.clustal.org/omega/):
