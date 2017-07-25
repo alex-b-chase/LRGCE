@@ -7,7 +7,7 @@ As most common metagenomic pipelines are often biased towards host-associated ec
 For more information, check out our paper in [XXX](journalwebsite.com). And 
 if you really like our approach and wish to use this reference database, please cite us:
 
->Chase AB, Karaoz U, Brodie EL, Gomez-Lunar Z, Martiny AC, Martiny JBH. 2017. Microdiversity of an abundant terrestrial bacterium encompasses extensive variation in ecologically-relevant traits.
+>Chase AB, Karaoz U, Brodie EL, Gomez-Lunar Z, Martiny AC, Allison SD, Martiny JBH. 2017. Microdiversity of an abundant terrestrial bacterium encompasses extensive variation in ecologically-relevant traits.
 
 
 # Reference Phylogeny: 
@@ -65,14 +65,16 @@ clustalo-1.2.0 --profile1 $REFDIR/$protein".refpkg"/$protein".clustalo.aln" -i $
 /macqiime/bin/pplacer --pretend -c $REFDIR/$protein".refpkg" $OUTPUT.fa
 ```
 
+You will see something like this:
+
 >Found reference sequences in given alignment file. Using those for reference alignment.
 
->Pre-masking sequences... sequence length cut from 464 to 284.
+>Pre-masking sequences... sequence length cut from XXX to XXX.
 
 >everything looks OK.
 
 
-3. if everything is OK, can run!
+3. Everything is OK, can run!
 
 ```bash
 /macqiime/bin/pplacer -c $REFDIR/$protein".refpkg" $OUTPUT.fa -p --keep-at-most 20
