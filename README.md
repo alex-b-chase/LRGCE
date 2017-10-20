@@ -4,10 +4,10 @@ Reference Packages used to analyze the bacterial leaf litter community at Loma R
 
 As most common metagenomic pipelines are often biased towards host-associated ecosystems, we developed this curated reference database to quantify soil microbial communities. From almost 80,000 genomes available in the [PATRIC](https://www.patricbrc.org/) database, we created a curated database of representative genomes consisting of 3,019 genomes representing 1,464 genera spanning the entire bacterial domain. When possible, we prioritized genomes isolated from soil habitats. In addition, we included a robust taxonomic representation in the common soil bacterium, Streptomyces (N=54) and Curtobacterium (N=17).
 
-For more information, check out our paper in [XXX](journalwebsite.com). And 
+For more information, check out our paper in [mBio](https://doi.org/10.1128/mBio.01809-17). And 
 if you really like our approach and wish to use this reference database, please cite us:
 
->Chase AB, Karaoz U, Brodie EL, Gomez-Lunar Z, Martiny AC, Allison SD, Martiny JBH. 2017. Microdiversity of an abundant terrestrial bacterium encompasses extensive variation in ecologically-relevant traits.
+>Chase AB, Karaoz U, Brodie EL, Gomez-Lunar Z, Martiny AC, Martiny JBH. 2017. Microdiversity of an abundant terrestrial bacterium encompasses extensive variation in ecologically-relevant traits.mBio 8:e01809-17.
 
 
 # Reference Phylogeny: 
