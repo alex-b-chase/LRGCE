@@ -7,7 +7,7 @@ As most common metagenomic pipelines are often biased towards host-associated ec
 For more information, check out our paper in [mBio](https://doi.org/10.1128/mBio.01809-17). And 
 if you really like our approach and wish to use this reference database, please cite us:
 
->Chase AB, Karaoz U, Brodie EL, Gomez-Lunar Z, Martiny AC, Martiny JBH. 2017. Microdiversity of an abundant terrestrial bacterium encompasses extensive variation in ecologically-relevant traits.mBio 8:e01809-17.
+>Chase AB, Karaoz U, Brodie EL, Gomez-Lunar Z, Martiny AC, Martiny JBH. 2017. Microdiversity of an abundant terrestrial bacterium encompasses extensive variation in ecologically-relevant traits. mBio 8:e01809-17.
 
 
 # Reference Phylogeny: 
