@@ -25,9 +25,9 @@ List of [Genomes](https://github.com/alex-b-chase/LRGCE/blob/master/concat.align
 
 
 # Running the Analysis
-You will need to run each marker gene independently. If you have access to a HPC, you can parallize these easily.
+You will need to run each marker gene independently. If you have access to a HPC, you can parallelize these easily.
 
-You will first need to filter your metagenomic libraries for each marker gene. You will have needed to translated all your reads to amino acid format. There are plenty of options out there for doing this quickly, including [FragGeneScanPlus](https://github.com/hallamlab/FragGeneScanPlus) and [Prodigal](https://github.com/hyattpd/Prodigal) using the -m option.
+You will first need to filter your metagenomic libraries for each marker gene. You will have needed to translated all your reads to amino acid format. There are plenty of options out there for doing this quickly, including [FragGeneScanPlus](https://github.com/hallamlab/FragGeneScanPlus) and our recommendation, [Prodigal](https://github.com/hyattpd/Prodigal) using the -m option.
 
 We recommend using the [BLASTp](https://github.com/alex-b-chase/LRGCE/blob/master/blastDB) database for an initial filter. This will be the most time consuming step.
 
@@ -36,7 +36,16 @@ REFDIR=/wherever/you/downloaded/the/refpackages
 protein=<reference protein package>
 INFILE=<MGreads.faa>
 
-blastp -query $INFILE -db $BLASTDB/totalmarkergene -outfmt 6 -max_target_seqs 2 -evalue .00001 -num_threads 4 > $protein.blast.txt
+blastp -query $INFILE -db $BLASTDB/totalmarkergene -outfmt 6 -max_target_seqs 2 -evalue .00001 -num_threads 4 > $INFILE.blast.txt
+
+# subset the blast file for each protein
+cat $INFILE.blast.txt | grep $protein > $protein.blast.txt
+```
+
+The text file we just generated will be a list of sequence IDs that we can parse out from the MG file - wrote a python script [here](https://github.com/alex-b-chase/random_scripts/blob/master/search-fasta.py)
+
+```bash
+search-fasta.py -i $INFILE -o $INFILE2 -m $protein.blast.txt
 ```
 
 Next, you can add a secondary filter using [HMMer](http://hmmer.org/) against the [hmmprofiles](https://github.com/alex-b-chase/LRGCE/blob/master/hmmprofiles)
