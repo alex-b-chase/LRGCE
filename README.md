@@ -29,7 +29,7 @@ You will need to run each marker gene independently. If you have access to a HPC
 
 You will first need to filter your metagenomic libraries for each marker gene. You will have needed to translated all your reads to amino acid format. There are plenty of options out there for doing this quickly, including [FragGeneScanPlus](https://github.com/hallamlab/FragGeneScanPlus) and our recommendation, [Prodigal](https://github.com/hyattpd/Prodigal) using the -m option.
 
-We recommend using the [BLASTp](https://github.com/alex-b-chase/LRGCE/blob/master/blastDB) database for an initial filter. This will be the most time consuming step.
+We recommend using our custom [BLAST](https://github.com/alex-b-chase/LRGCE/blob/master/blastDB) databases for an initial filter. This will be the most time consuming step. Parsing, these reads can be done a LOT quicker using [BLAT](https://genome.ucsc.edu/goldenPath/help/blatSpec.html). 
 
 ```bash
 REFDIR=/wherever/you/downloaded/the/refpackages
@@ -37,6 +37,9 @@ protein=<reference protein package>
 INFILE=<MGreads.faa>
 
 blastp -query $INFILE -db $BLASTDB/totalmarkergene -outfmt 6 -max_target_seqs 2 -evalue .00001 -num_threads 4 > $INFILE.blast.txt
+### OR ###
+blat -prot -fastMap -minIdentity=20 -out=blast8 \
+$BLASTDB/totalmarkergene $INFILE $INFILE.blat.txt
 
 # subset the blast file for each protein
 cat $INFILE.blast.txt | grep $protein > $protein.blast.txt
